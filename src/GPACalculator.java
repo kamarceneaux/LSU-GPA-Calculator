@@ -1,6 +1,47 @@
+import java.util.Scanner;
+
 public class GPACalculator {
     public static void main(String[] args) {
-        System.out.println(gradePoints("F-"));
+        // Initial Variables
+        double GPA = 0.00;
+        double totalQPoints = 0;
+        int totalCreditHours = 0;
+        boolean runningProgram = true;
+
+        Scanner inputScanner = new Scanner(System.in);
+
+        //Description Method
+        System.out.println("Enter your class, followed by many credit hours it is. Please enter \"Done\" when finished.");
+
+        while (runningProgram){
+            String userGrade = inputScanner.nextLine().toUpperCase();
+
+            if(userGrade.equals("DONE")){
+                runningProgram = false;
+            }else{
+                String[] splitInput = userGrade.split(" ");
+
+                //Ensure that input format is somewhat valid.
+                if(splitInput.length != 2){
+                    System.out.println("Input is not valid. Try again or enter \"done\" to exit the program.");
+                }else{
+                    double gradePoint = gradePoints(splitInput[0]);
+                    int creditHours = Integer.parseInt(splitInput[1]);
+
+                    //REMEMBER: if the value of gradePoint is negative one than the grade input was not interpreted.
+                    if(gradePoint != -1){
+                        totalQPoints += gradePoint * creditHours;
+                        totalCreditHours += creditHours;
+                    }else{
+                        System.out.println("Input was not interpreted. Try again or enter \"done\" to exit the program.");
+                    }
+                }
+
+            }
+        }
+
+        inputScanner.close();
+
     }
 
     /**
@@ -14,7 +55,7 @@ public class GPACalculator {
      */
     public static double gradePoints(String grade){
         double gpa = 0.000;
-        //This line of code determines if a grape
+        //This line of code determines if a grade is in the right format
         if(grade.length() > 0 && grade.length() < 3){
             // Return a gradePoint based on a score
             if (grade.length() == 1){
