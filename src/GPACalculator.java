@@ -3,7 +3,15 @@ public class GPACalculator {
         System.out.println(gradePoints("F-"));
     }
 
-
+    /**
+     * gradePoints returns the grade point of a singular class period (without considering the credit hours) as
+     * a double.
+     *
+     * @param grade should be a String containing a valid letter grade and plus (+) or minus (-), if applicable.
+     * @return a <code>Integer</code> containing the grade point of a class (in the 4.0 Scale) <em>BUT</em> the method
+     * could return <code>-1</code>, if the formatting of the original grade passed in is invalid.
+     *
+     */
     public static double gradePoints(String grade){
         double gpa = 0.000;
         //This line of code determines if a grape
